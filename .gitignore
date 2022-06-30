@@ -1,0 +1,23 @@
+data/
+venv/
+
+# python nonsense
+virtual-env/*
+*.egg-info
+*.pyc
+.git
+*~
+*.aux
+*.log
+PKG-INFO
+*.pid
+.doit.*
+.ipynb_checkpoints
+.directory
+
+#R
+.Rproj*
+.Rhistory
+
+#OS
+.DS_Store
