@@ -1,5 +1,7 @@
 data/
 venv/
+figures/
+.env
 
 # python nonsense
 virtual-env/*

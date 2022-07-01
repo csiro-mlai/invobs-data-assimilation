@@ -167,7 +167,7 @@ def load_data(config: dict) -> Tuple[Array, Array, Array, Array]:
   """
   Load training data.
   """
-  filename = config['data_filename']
+  filename = config[os.path.expandvars('data_filename')]
   max_num_train = config['max_num_train']
   max_num_test = config['max_num_test']
   ds = xr.open_dataset(filename)
@@ -234,7 +234,7 @@ def main(config):
       config,
   )
   
-  save_model(config['save_filename'], model_trained, config, losses)
+  save_model(config[os.path.expandvars('save_filename')], model_trained, config, losses)
 
   
 if __name__ == "__main__":

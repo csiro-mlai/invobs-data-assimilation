@@ -199,7 +199,7 @@ def main(config):
         'Number of samples must be divisible into equally sized batches.'
     )  
   grid_size = config['grid_size']
-  save_filename = config['save_filename']
+  save_filename = config[os.path.expandvars('save_filename')]
   
   dyn_sys = generate_dyn_sys(config)
     

@@ -1,8 +1,6 @@
-numpy
-scipy
-jax==0.2.6
+jax
 flax==0.3.0
 xarray
 seaborn
 ipykernel
-dotenv
+gsutil

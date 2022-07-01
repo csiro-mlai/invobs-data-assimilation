@@ -20,6 +20,9 @@ Variational data assimilation.
   python run_data_assimilation.py --config CONFIG
 """
 import os
+load_dotenv()  # take environment variables from .env.
+DATA_PATH = os.path.expandvars('$INVOBS_DATA_PATH')
+
 os.environ['XLA_FLAGS'] = (
     '--xla_gpu_deterministic_reductions --xla_gpu_autotune_level=0'
 ) # enforce deterministic GPU computation
@@ -133,7 +136,7 @@ def generate_correlation_transform(
     
       correlation_transform(x, 'dec')
   """
-  correlation_data = xr.open_dataset(config['correlation_filename'])
+  correlation_data = xr.open_dataset(config[os.path.expandvars('correlation_filename')])
   C_sqrt = jnp.asarray(correlation_data['cov_sqrt'])
   C_inv_sqrt = jnp.asarray(correlation_data['cov_inv_sqrt'])
   num_variables = C_inv_sqrt.shape[0]
@@ -329,7 +332,7 @@ def main(config):
   data = generate_data(config, data_key, dyn_sys)
   correlation_transform = generate_correlation_transform(config)
   invobs_model = load_model(
-      config['invobs_model_filename'], 
+      config[os.path.expandvars('invobs_model_filename')], 
       config['dyn_sys'], 
       data['Y'].shape,
   )
@@ -387,7 +390,7 @@ def main(config):
     opt_space = 'not_specified'
   ds.attrs['opt_space'] = opt_space
   
-  ds.to_netcdf(config['save_filename'])
+  ds.to_netcdf(config[os.path.expandvars('save_filename')])
   
 
 if __name__ == "__main__":

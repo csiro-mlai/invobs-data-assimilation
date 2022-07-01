@@ -57,6 +57,10 @@ Please install `jax_cfd==0.1.0`,
 pip install -U jax_cfd==0.1.0
 ```
 
+```bash
+pip install "python-dotenv[cli]"
+```
+
 All other dependencies are listed in `requirements.txt`.
 
 
@@ -71,17 +75,17 @@ results we have uploaded to public cloud storage.
 **Download data**
 Create data base directory:
 ```
-mkdir -p /data
+dotenv run mkdir -p $DATA_PATH
 ```
 
 Data assimilation requires spatial correlation data and inverse observation
 models for the respective dynamical system. Downloading these requires
 [gsutil](https://cloud.google.com/storage/docs/gsutil):
 ```
-gsutil cp -r gs://gresearch/jax-cfd/projects/invobs-data-assimilation/invobs-da-data /data
+dotenv run gsutil cp -r gs://gresearch/jax-cfd/projects/invobs-data-assimilation/invobs-da-data $DATA_PATH
 ```
 
-This downloads into `/data/invobs-da-data/` and all
+This downloads into `$DATA_PATH/invobs-da-data/` and all
 config files assume this path.
 
 **Run data assimilation**
