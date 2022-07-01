@@ -43,6 +43,9 @@ General machine learning and data assimilation helper methods are defined at:
 
 Installation requirements
 -------------------
+
+nb: not macos, at least not with this version of jax.
+
 Please install `jaxlib==0.1.57` for your cuda version, e.g. for cuda 11.0, 
 ```
 pip install -U jaxlib==0.1.57+cuda110 -f https://storage.googleapis.com/jax-releases/jax_releases.html
